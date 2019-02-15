@@ -16,6 +16,7 @@ function init() {
     .querySelector("#selectColor")
     .addEventListener("change", selectColor);
   colorConvert(defaultColor);
+  document.querySelector("#reset").addEventListener("click", reset);
 }
 
 function colorPick(event) {
@@ -221,4 +222,9 @@ function rgbToHsl(rgbColor) {
     s,
     l
   };
+}
+
+function reset() {
+  console.log("reset")
+  location.reload(true);
 }
