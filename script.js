@@ -106,6 +106,7 @@ function Shades(hslColor) {
   console.log("Shades run");
 }
 
+
 //  - - - - - - - - - - - - - - - hexToRgb - - - - - - - - - - - - - - -
 
 function hexToRgb(hexColor) {
@@ -173,23 +174,3 @@ function rgbToHsl(rgbColor) {
     l
   };
 }
-
-
-// //  - - - - - - - - - - - - - - - basecolor - - - - - - - - - - - - - - -
-
-// function setBaseColor() {
-//   console.log("setBaseColor run");
-
-//   document.querySelector("#box_1").style.backgroundColor = `hsl(${hslColor.h},${hslColor.s
-//   }%,${hslColor.l}%`;
-//   document.querySelector("#box_2").style.backgroundColor = `hsl(${hslColor.h},${hslColor.s
-//   }%,${hslColor.l}%`;
-//   document.querySelector("#box_3").style.backgroundColor = `hsl(${hslColor.h},${hslColor.s
-//   }%,${hslColor.l}%`;
-//   document.querySelector("#box_4").style.backgroundColor = `hsl(${hslColor.h},${hslColor.s
-//   }%,${hslColor.l}%`;
-//   document.querySelector("#box_5").style.backgroundColor = `hsl(${hslColor.h},${hslColor.s
-//   }%,${hslColor.l}%`;
-
-//   selectedColor(selected);
-// }
