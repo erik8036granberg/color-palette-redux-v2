@@ -1,0 +1,45 @@
+/* basic styles */
+
+* {
+  box-sizing: border-box;
+}
+
+img {
+  width: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  position: relative;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.wrapper {
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.wrapper .colorbox {
+  padding-top: 100%;
+  border: solid 2px rgb(255, 255, 255);
+}
+
+.wrapper .label {
+  font-size: 11px;
+  height: 30px;
+  text-align: center;
+  margin: 10px 0;
+}
+
+#box_1>div {
+  border: solid 2px rgb(255, 255, 255);
+  margin: 10px;
+  width: 100%;
+  height: 100%;
+}
+
+.panel {
+  padding: 0 2rem;
+}
