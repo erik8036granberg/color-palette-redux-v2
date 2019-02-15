@@ -1,12 +1,9 @@
 "use strict";
 
-const defaultColor = "#55AA00";
+const defaultColor = "#FF0000";
 let selected = "Monochromatic";
 let colorWell;
-let hexColor;
-let rgbColor;
-let hslColor;
-
+let activeColor;
 
 document.addEventListener("DOMContentLoaded", init);
 
@@ -23,22 +20,25 @@ function init() {
 
 function colorPick(event) {
   console.log("colorPick run");
-  hexColor = event.target.value;
+  let hexColor = event.target.value;
   colorConvert(hexColor);
 }
 
 function colorConvert(hexColor) {
   console.log("colorConvert run");
-  rgbColor = hexToRgb(hexColor);
-  hslColor = rgbToHsl(rgbColor);
+  let rgbColor = hexToRgb(hexColor);
+  let hslColor = rgbToHsl(rgbColor);
+  activeColor = hslColor;
   setBaseColor();
 }
 
 function setBaseColor() {
   console.log("setBaseColor run");
+
+  let hslColor = activeColor;
   document.querySelector("#box_3").style.backgroundColor = `hsl(${hslColor.h},${hslColor.s
   }%,${hslColor.l}%`;
-  selectedColor(selected);
+  selectedColor();
 }
 
 //  - - - - - - - - - - - - - - - select color dropdown - - - - - - - - - - - - - - -
@@ -53,29 +53,58 @@ function selectedColor() {
   console.log("setColor run");
 
   if (selected === "Monochromatic") {
-    Monochromatic(hslColor);
+    monochromaticSet();
   }
   if (selected === "Analogous") {
-    Analogous(hslColor);
+    analogousSet();
   }
   if (selected === "Triad") {
-    Triad(hslColor);
+    triadSet();
   }
   if (selected === "Complementary") {
-    Complementary(hslColor);
+    complementarySet();
   }
   if (selected === "Compound") {
-    Compound(hslColor);
+    compoundSet();
   }
   if (selected === "Shades") {
-    Shades(hslColor);
+    shadesSet();
   }
 }
 
 //  - - - - - - - - - - - - - - - Color sets - - - - - - - - - - - - - - -
 
-function Monochromatic(hslColor) {
-  console.log("Monochromatic run");
+function monochromaticSet() {
+  console.log("monochromaticSet run");
+
+  let hslColor = activeColor;
+  document.querySelector("#box_1").style.backgroundColor = `hsl(${hslColor.h},${hslColor.s
+  }%,${parseInt(hslColor.l) - 30}%`;
+  document.querySelector("#box_2").style.backgroundColor = `hsl(${hslColor.h},${hslColor.s
+  }%,${parseInt(hslColor.l) - 15}%`;
+  document.querySelector("#box_4").style.backgroundColor = `hsl(${hslColor.h},${hslColor.s
+  }%,${parseInt(hslColor.l) + 15}%`;
+  document.querySelector("#box_5").style.backgroundColor = `hsl(${hslColor.h},${hslColor.s
+  }%,${parseInt(hslColor.l) + 30}%`;
+}
+
+function analogousSet() {
+  console.log("analogousSet run");
+
+  let hslColor = activeColor;
+  document.querySelector("#box_1").style.backgroundColor = `hsl(${parseInt(hslColor.h) - 60},${hslColor.s
+  }%,${hslColor.l}%`;
+  document.querySelector("#box_2").style.backgroundColor = `hsl(${parseInt(hslColor.h) - 30},${hslColor.s
+  }%,${hslColor.l}%`;
+  document.querySelector("#box_4").style.backgroundColor = `hsl(${parseInt(hslColor.h) + 30},${hslColor.s
+  }%,${hslColor.l}%`;
+  document.querySelector("#box_5").style.backgroundColor = `hsl(${parseInt(hslColor.h) + 60},${hslColor.s
+  }%,${hslColor.l}%`;
+}
+
+function triadSet() {
+  let hslColor = activeColor;
+  console.log("triadSet run");
   document.querySelector("#box_1").style.backgroundColor = `hsl(${hslColor.h},${hslColor.s
   }%,${hslColor.l}%`;
   document.querySelector("#box_2").style.backgroundColor = `hsl(${hslColor.h},${hslColor.s
@@ -86,24 +115,43 @@ function Monochromatic(hslColor) {
   }%,${hslColor.l}%`;
 }
 
-function Analogous(hslColor) {
-  console.log("Analogous run");
+function complementarySet() {
+  let hslColor = activeColor;
+  console.log("complementarySet run");
+  document.querySelector("#box_1").style.backgroundColor = `hsl(${hslColor.h},${hslColor.s
+  }%,${hslColor.l}%`;
+  document.querySelector("#box_2").style.backgroundColor = `hsl(${hslColor.h},${hslColor.s
+  }%,${hslColor.l}%`;
+  document.querySelector("#box_4").style.backgroundColor = `hsl(${hslColor.h},${hslColor.s
+  }%,${hslColor.l}%`;
+  document.querySelector("#box_5").style.backgroundColor = `hsl(${hslColor.h},${hslColor.s
+  }%,${hslColor.l}%`;
 }
 
-function Triad(hslColor) {
-  console.log("Triad run");
+function compoundSet() {
+  let hslColor = activeColor;
+  console.log("compoundSet run");
+  document.querySelector("#box_1").style.backgroundColor = `hsl(${hslColor.h},${hslColor.s
+  }%,${hslColor.l}%`;
+  document.querySelector("#box_2").style.backgroundColor = `hsl(${hslColor.h},${hslColor.s
+  }%,${hslColor.l}%`;
+  document.querySelector("#box_4").style.backgroundColor = `hsl(${hslColor.h},${hslColor.s
+  }%,${hslColor.l}%`;
+  document.querySelector("#box_5").style.backgroundColor = `hsl(${hslColor.h},${hslColor.s
+  }%,${hslColor.l}%`;
 }
 
-function Complementary(hslColor) {
-  console.log("Complementary run");
-}
-
-function Compound(hslColor) {
-  console.log("Compound run");
-}
-
-function Shades(hslColor) {
-  console.log("Shades run");
+function shadesSet() {
+  let hslColor = activeColor;
+  console.log("shadesSet run");
+  document.querySelector("#box_1").style.backgroundColor = `hsl(${hslColor.h},${hslColor.s
+  }%,${hslColor.l}%`;
+  document.querySelector("#box_2").style.backgroundColor = `hsl(${hslColor.h},${hslColor.s
+  }%,${hslColor.l}%`;
+  document.querySelector("#box_4").style.backgroundColor = `hsl(${hslColor.h},${hslColor.s
+  }%,${hslColor.l}%`;
+  document.querySelector("#box_5").style.backgroundColor = `hsl(${hslColor.h},${hslColor.s
+  }%,${hslColor.l}%`;
 }
 
 
