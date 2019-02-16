@@ -5,6 +5,13 @@ let selected = "Monochromatic";
 let colorWell;
 let activeColor;
 
+// colorboxes
+const box_1 = document.querySelector("#box_1");
+const box_2 = document.querySelector("#box_2");
+const box_3 = document.querySelector("#box_3");
+const box_4 = document.querySelector("#box_4");
+const box_5 = document.querySelector("#box_5");
+
 document.addEventListener("DOMContentLoaded", init);
 
 function init() {
@@ -37,7 +44,8 @@ function setBaseColor() {
   console.log("setBaseColor run");
 
   let hslColor = activeColor;
-  document.querySelector("#box_3").style.backgroundColor = `hsl(${hslColor.h},${hslColor.s
+  document.querySelector("#box_3").style.backgroundColor = `hsl(${hslColor.h},${
+    hslColor.s
   }%,${hslColor.l}%`;
   selectedColor();
 }
@@ -69,7 +77,7 @@ function selectedColor() {
     compoundSet();
   }
   if (selected === "Shades") {
-    shadesSet();
+    shadeSet();
   }
 }
 
@@ -79,82 +87,120 @@ function monochromaticSet() {
   console.log("monochromaticSet run");
 
   let hslColor = activeColor;
-  document.querySelector("#box_1").style.backgroundColor = `hsl(${hslColor.h},${hslColor.s
-  }%,${parseInt(hslColor.l) - 30}%`;
-  document.querySelector("#box_2").style.backgroundColor = `hsl(${hslColor.h},${hslColor.s
-  }%,${parseInt(hslColor.l) - 15}%`;
-  document.querySelector("#box_4").style.backgroundColor = `hsl(${hslColor.h},${hslColor.s
-  }%,${parseInt(hslColor.l) + 15}%`;
-  document.querySelector("#box_5").style.backgroundColor = `hsl(${hslColor.h},${hslColor.s
-  }%,${parseInt(hslColor.l) + 30}%`;
+  box_1.style.backgroundColor = `hsl(${hslColor.h},${hslColor.s}%,${parseInt(
+    hslColor.l
+  ) - 30}%`;
+  box_2.style.backgroundColor = `hsl(${hslColor.h},${hslColor.s}%,${parseInt(
+    hslColor.l
+  ) - 15}%`;
+  box_4.style.backgroundColor = `hsl(${hslColor.h},${hslColor.s}%,${parseInt(
+    hslColor.l
+  ) + 15}%`;
+  box_5.style.backgroundColor = `hsl(${hslColor.h},${hslColor.s}%,${parseInt(
+    hslColor.l
+  ) + 30}%`;
+  labels();
 }
 
 function analogousSet() {
   console.log("analogousSet run");
 
   let hslColor = activeColor;
-  document.querySelector("#box_1").style.backgroundColor = `hsl(${parseInt(hslColor.h) - 60},${hslColor.s
+  box_1.style.backgroundColor = `hsl(${parseInt(hslColor.h) - 60},${
+    hslColor.s
   }%,${hslColor.l}%`;
-  document.querySelector("#box_2").style.backgroundColor = `hsl(${parseInt(hslColor.h) - 30},${hslColor.s
+  box_2.style.backgroundColor = `hsl(${parseInt(hslColor.h) - 30},${
+    hslColor.s
   }%,${hslColor.l}%`;
-  document.querySelector("#box_4").style.backgroundColor = `hsl(${parseInt(hslColor.h) + 30},${hslColor.s
+  box_4.style.backgroundColor = `hsl(${parseInt(hslColor.h) + 30},${
+    hslColor.s
   }%,${hslColor.l}%`;
-  document.querySelector("#box_5").style.backgroundColor = `hsl(${parseInt(hslColor.h) + 60},${hslColor.s
+  box_5.style.backgroundColor = `hsl(${parseInt(hslColor.h) + 60},${
+    hslColor.s
   }%,${hslColor.l}%`;
+  labels();
 }
 
 function triadSet() {
   let hslColor = activeColor;
   console.log("triadSet run");
-  document.querySelector("#box_1").style.backgroundColor = `hsl(${hslColor.h},${hslColor.s
+  box_1.style.backgroundColor = `hsl(${parseInt(hslColor.h) + 120},${
+    hslColor.s
   }%,${hslColor.l}%`;
-  document.querySelector("#box_2").style.backgroundColor = `hsl(${hslColor.h},${hslColor.s
+  box_2.style.backgroundColor = `hsl(${parseInt(hslColor.h) - 120},${
+    hslColor.s
   }%,${hslColor.l}%`;
-  document.querySelector("#box_4").style.backgroundColor = `hsl(${hslColor.h},${hslColor.s
+  box_4.style.backgroundColor = `hsl(${parseInt(hslColor.h) + 120},${
+    hslColor.s
   }%,${hslColor.l}%`;
-  document.querySelector("#box_5").style.backgroundColor = `hsl(${hslColor.h},${hslColor.s
+  box_5.style.backgroundColor = `hsl(${parseInt(hslColor.h) - 120},${
+    hslColor.s
   }%,${hslColor.l}%`;
+  labels();
 }
 
 function complementarySet() {
   let hslColor = activeColor;
   console.log("complementarySet run");
-  document.querySelector("#box_1").style.backgroundColor = `hsl(${hslColor.h},${hslColor.s
+  box_1.style.backgroundColor = `hsl(${hslColor.h},${hslColor.s}%,${
+    hslColor.l
+  }%`;
+  box_2.style.backgroundColor = `hsl(${parseInt(hslColor.h) + 180},${
+    hslColor.s
   }%,${hslColor.l}%`;
-  document.querySelector("#box_2").style.backgroundColor = `hsl(${hslColor.h},${hslColor.s
+  box_4.style.backgroundColor = `hsl(${parseInt(hslColor.h) + 180},${
+    hslColor.s
   }%,${hslColor.l}%`;
-  document.querySelector("#box_4").style.backgroundColor = `hsl(${hslColor.h},${hslColor.s
-  }%,${hslColor.l}%`;
-  document.querySelector("#box_5").style.backgroundColor = `hsl(${hslColor.h},${hslColor.s
-  }%,${hslColor.l}%`;
+  box_5.style.backgroundColor = `hsl(${hslColor.h},${hslColor.s}%,${
+    hslColor.l
+  }%`;
+  labels();
 }
 
 function compoundSet() {
   let hslColor = activeColor;
   console.log("compoundSet run");
-  document.querySelector("#box_1").style.backgroundColor = `hsl(${hslColor.h},${hslColor.s
+  box_1.style.backgroundColor = `hsl(${parseInt(hslColor.h) + 45},${
+    hslColor.s
   }%,${hslColor.l}%`;
-  document.querySelector("#box_2").style.backgroundColor = `hsl(${hslColor.h},${hslColor.s
+  box_2.style.backgroundColor = `hsl(${parseInt(hslColor.h) + 180},${
+    hslColor.s
   }%,${hslColor.l}%`;
-  document.querySelector("#box_4").style.backgroundColor = `hsl(${hslColor.h},${hslColor.s
+  box_4.style.backgroundColor = `hsl(${parseInt(hslColor.h) - 45},${
+    hslColor.s
   }%,${hslColor.l}%`;
-  document.querySelector("#box_5").style.backgroundColor = `hsl(${hslColor.h},${hslColor.s
+  box_5.style.backgroundColor = `hsl(${parseInt(hslColor.h) + 180},${
+    hslColor.s
   }%,${hslColor.l}%`;
+  labels();
 }
 
-function shadesSet() {
+function shadeSet() {
   let hslColor = activeColor;
-  console.log("shadesSet run");
-  document.querySelector("#box_1").style.backgroundColor = `hsl(${hslColor.h},${hslColor.s
-  }%,${hslColor.l}%`;
-  document.querySelector("#box_2").style.backgroundColor = `hsl(${hslColor.h},${hslColor.s
-  }%,${hslColor.l}%`;
-  document.querySelector("#box_4").style.backgroundColor = `hsl(${hslColor.h},${hslColor.s
-  }%,${hslColor.l}%`;
-  document.querySelector("#box_5").style.backgroundColor = `hsl(${hslColor.h},${hslColor.s
-  }%,${hslColor.l}%`;
+  console.log("shadeSet run");
+  box_1.style.backgroundColor = `hsl(${hslColor.h},${parseInt(hslColor.s) -
+    30}%,${hslColor.l}%`;
+  box_2.style.backgroundColor = `hsl(${hslColor.h},${parseInt(hslColor.s) -
+    15}%,${hslColor.l}%`;
+  box_4.style.backgroundColor = `hsl(${hslColor.h},${parseInt(hslColor.s) +
+    15}%,${hslColor.l}%`;
+  box_5.style.backgroundColor = `hsl(${hslColor.h},${parseInt(hslColor.s) -
+    30}%,${hslColor.l}%`;
+  labels();
 }
 
+function labels() {
+  let box_1_label = document.querySelector("#box_1_label");
+  let box_2_label = document.querySelector("#box_2_label");
+  let box_3_label = document.querySelector("#box_3_label");
+  let box_4_label = document.querySelector("#box_4_label");
+  let box_5_label = document.querySelector("#box_5_label");
+  box_1_label.textContent = box_1.style.backgroundColor;
+  box_2_label.textContent = box_2.style.backgroundColor;
+  box_3_label.textContent = box_3.style.backgroundColor;
+  box_4_label.textContent = box_4.style.backgroundColor;
+  box_5_label.textContent = box_5.style.backgroundColor;
+}
 
 //  - - - - - - - - - - - - - - - hexToRgb - - - - - - - - - - - - - - -
 
@@ -225,6 +271,6 @@ function rgbToHsl(rgbColor) {
 }
 
 function reset() {
-  console.log("reset")
+  console.log("reset");
   location.reload(true);
 }
