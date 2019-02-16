@@ -231,11 +231,11 @@ function labels() {
   let color_5_hsl = rgbTagToHsl(color_5);
 
   // add text to label boxes
-  box_1_label.innerHTML = box_1.style.backgroundColor + "<br>" + color_1_hex + "<br>" + color_1_hsl;
-  box_2_label.innerHTML = box_2.style.backgroundColor + "<br>" + color_2_hex + "<br>" + color_2_hsl;
-  box_3_label.innerHTML = box_3.style.backgroundColor + "<br>" + color_3_hex + "<br>" + color_3_hsl;
-  box_4_label.innerHTML = box_4.style.backgroundColor + "<br>" + color_4_hex + "<br>" + color_4_hsl;
-  box_5_label.innerHTML = box_5.style.backgroundColor + "<br>" + color_5_hex + "<br>" + color_5_hsl;
+  box_1_label.innerHTML = "<p>" + box_1.style.backgroundColor + "</p><p>" + color_1_hex + "</p><p>" + color_1_hsl + "</p>";
+  box_2_label.innerHTML = "<p>" + box_2.style.backgroundColor + "</p><p>" + color_2_hex + "</p><p>" + color_2_hsl + "</p>";
+  box_3_label.innerHTML = "<p>" + box_3.style.backgroundColor + "</p><p>" + color_3_hex + "</p><p>" + color_3_hsl + "</p>";
+  box_4_label.innerHTML = "<p>" + box_4.style.backgroundColor + "</p><p>" + color_4_hex + "</p><p>" + color_4_hsl + "</p>";
+  box_5_label.innerHTML = "<p>" + box_5.style.backgroundColor + "</p><p>" + color_5_hex + "</p><p>" + color_5_hsl + "</p>";
 }
 
 //  - - - - - - - - - - - - - - - hexToRgb - - - - - - - - - - - - - - -
@@ -330,17 +330,6 @@ function rgbTagToHex(color) {
   );
 }
 
-// hsl to string
-function hslToString(h, s, l) {
-  const rgbString = `hsl(${h},${s}%,${l}%)`;
-  return hlsString;
-}
-
-function reset() {
-  console.log("reset");
-  location.reload(true);
-}
-
 function rgbTagToHsl(color) {
   console.log("rgbTagToHsl");
 
@@ -387,5 +376,9 @@ function rgbTagToHsl(color) {
 
   const hslString = `hsl(${h}, ${s}%, ${l}%)`;
   return hslString;
+}
 
+function reset() {
+  console.log("reset");
+  location.reload(true);
 }

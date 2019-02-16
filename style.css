@@ -17,6 +17,12 @@ body {
 
 .wrapper {
   padding: 2rem;
+  max-width: 1280px;
+  margin: 0 auto;
+
+}
+
+.boxwrapper {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
 }
@@ -33,13 +39,11 @@ body {
   margin: 10px 0;
 }
 
-#box_1>div {
-  border: solid 2px rgb(255, 255, 255);
-  margin: 10px;
-  width: 100%;
-  height: 100%;
+.wrapper .label p {
+  background-color: #dddddd;
+  padding: 5px;
 }
 
 .panel {
-  padding: 0 2rem;
+  padding: 4rem 0 0 0;
 }
