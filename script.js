@@ -21,10 +21,24 @@ function init() {
     .querySelector("#colorWell")
     .addEventListener("input", colorPick, false);
 
+  //   .querySelector("#colorWell")
+  //   .addEventListener("input", colorPick, false);
+
+  // // let colorButton = document
+  // //   .querySelector("#colorWell");
+
+  // // let colorDiv = document
+  // //   .querySelector("#color_val");
+  // // colorButton.onchange = function () {
+  // //   colorDiv.innerHTML = colorButton.value;
+  // //   colorDiv.style.color = colorButton.value;
+  // // }
+
   document
     .querySelector("#selectColor")
     .addEventListener("change", selectColor);
   colorConvert(defaultColor);
+
   document.querySelector("#reset").addEventListener("click", reset);
 
   colorConvert(defaultColor);

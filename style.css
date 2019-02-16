@@ -18,8 +18,14 @@ body {
 .wrapper {
   padding: 2rem;
   max-width: 1280px;
+  height: auto;
   margin: 0 auto;
+}
 
+.panelwrapper {
+  margin: 0 auto;
+  padding: 0 0 2rem 0;
+  text-align: center;
 }
 
 .boxwrapper {
@@ -27,23 +33,61 @@ body {
   grid-template-columns: repeat(5, 1fr);
 }
 
-.wrapper .colorbox {
+.colorbox {
   padding-top: 100%;
   border: solid 2px rgb(255, 255, 255);
 }
 
-.wrapper .label {
-  font-size: 11px;
-  height: 30px;
-  text-align: center;
-  margin: 10px 0;
+#box_3 {
+  position: relative;
+  transition: 0.5s;
 }
 
-.wrapper .label p {
+#box_3:before {
+  content: " ";
+  position: absolute;
+  z-index: 50;
+  top: 5px;
+  left: 5px;
+  right: 5px;
+  bottom: 5px;
+  border: 1px solid #ffffff;
+  pointer-events: none;
+}
+
+#box_3:hover {
+  transform: scale(0.9);
+}
+
+.label {
+  font-size: 11px;
+  height: auto;
+  text-align: left;
+  padding: 2px;
+}
+
+.label p {
   background-color: #dddddd;
   padding: 5px;
 }
 
-.panel {
-  padding: 4rem 0 0 0;
+#colorWell {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100% !important;
+  width: 100% !important;
+  border: none;
+  outline: none;
+  -webkit-appearance: none;
+  opacity: 0;
+}
+
+#colorWell::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+#colorWell::-webkit-color-swatch {
+  border: none;
+  border-radius: 100%;
 }
