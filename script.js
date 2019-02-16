@@ -16,27 +16,35 @@ document.addEventListener("DOMContentLoaded", init);
 
 function init() {
   console.log("init");
+
   document
     .querySelector("#colorWell")
     .addEventListener("input", colorPick, false);
+
   document
     .querySelector("#selectColor")
     .addEventListener("change", selectColor);
   colorConvert(defaultColor);
   document.querySelector("#reset").addEventListener("click", reset);
+
+  colorConvert(defaultColor);
 }
 
 function colorPick(event) {
   console.log("colorPick run");
+
   let hexColor = event.target.value;
   colorConvert(hexColor);
 }
 
 function colorConvert(hexColor) {
   console.log("colorConvert run");
+
   let rgbColor = hexToRgb(hexColor);
   let hslColor = rgbToHsl(rgbColor);
   activeColor = hslColor;
+  console.log(hslColor);
+
   setBaseColor();
 }
 
@@ -47,6 +55,7 @@ function setBaseColor() {
   document.querySelector("#box_3").style.backgroundColor = `hsl(${hslColor.h},${
     hslColor.s
   }%,${hslColor.l}%`;
+
   selectedColor();
 }
 
@@ -54,6 +63,7 @@ function setBaseColor() {
 
 function selectColor() {
   console.log("selectColor run");
+
   selected = this.options[this.selectedIndex].value;
   selectedColor();
 }
@@ -178,11 +188,11 @@ function compoundSet() {
 function shadeSet() {
   let hslColor = activeColor;
   console.log("shadeSet run");
-  box_1.style.backgroundColor = `hsl(${hslColor.h},${parseInt(hslColor.s) -
+  box_1.style.backgroundColor = `hsl(${hslColor.h},${parseInt(hslColor.s) +
     30}%,${hslColor.l}%`;
-  box_2.style.backgroundColor = `hsl(${hslColor.h},${parseInt(hslColor.s) -
+  box_2.style.backgroundColor = `hsl(${hslColor.h},${parseInt(hslColor.s) +
     15}%,${hslColor.l}%`;
-  box_4.style.backgroundColor = `hsl(${hslColor.h},${parseInt(hslColor.s) +
+  box_4.style.backgroundColor = `hsl(${hslColor.h},${parseInt(hslColor.s) -
     15}%,${hslColor.l}%`;
   box_5.style.backgroundColor = `hsl(${hslColor.h},${parseInt(hslColor.s) -
     30}%,${hslColor.l}%`;
@@ -190,16 +200,42 @@ function shadeSet() {
 }
 
 function labels() {
-  let box_1_label = document.querySelector("#box_1_label");
-  let box_2_label = document.querySelector("#box_2_label");
-  let box_3_label = document.querySelector("#box_3_label");
-  let box_4_label = document.querySelector("#box_4_label");
-  let box_5_label = document.querySelector("#box_5_label");
-  box_1_label.textContent = box_1.style.backgroundColor;
-  box_2_label.textContent = box_2.style.backgroundColor;
-  box_3_label.textContent = box_3.style.backgroundColor;
-  box_4_label.textContent = box_4.style.backgroundColor;
-  box_5_label.textContent = box_5.style.backgroundColor;
+
+  // choose label boxes
+  document.querySelector("#box_1_label");
+  document.querySelector("#box_2_label");
+  document.querySelector("#box_3_label");
+  document.querySelector("#box_4_label");
+  document.querySelector("#box_5_label");
+
+  // get rgb color from boxes
+  let color_1 = box_1.style.backgroundColor;
+  let color_2 = box_2.style.backgroundColor;
+  let color_3 = box_3.style.backgroundColor;
+  let color_4 = box_4.style.backgroundColor;
+  let color_5 = box_5.style.backgroundColor;
+  console.log("color_1 rgb: " + color_1);
+
+  // convet rgb to hex
+  let color_1_hex = rgbTagToHex(color_1);
+  let color_2_hex = rgbTagToHex(color_2);
+  let color_3_hex = rgbTagToHex(color_3);
+  let color_4_hex = rgbTagToHex(color_4);
+  let color_5_hex = rgbTagToHex(color_5);
+
+  // convet rgb to hsl
+  let color_1_hsl = rgbTagToHsl(color_1);
+  let color_2_hsl = rgbTagToHsl(color_2);
+  let color_3_hsl = rgbTagToHsl(color_3);
+  let color_4_hsl = rgbTagToHsl(color_4);
+  let color_5_hsl = rgbTagToHsl(color_5);
+
+  // add text to label boxes
+  box_1_label.innerHTML = box_1.style.backgroundColor + "<br>" + color_1_hex + "<br>" + color_1_hsl;
+  box_2_label.innerHTML = box_2.style.backgroundColor + "<br>" + color_2_hex + "<br>" + color_2_hsl;
+  box_3_label.innerHTML = box_3.style.backgroundColor + "<br>" + color_3_hex + "<br>" + color_3_hsl;
+  box_4_label.innerHTML = box_4.style.backgroundColor + "<br>" + color_4_hex + "<br>" + color_4_hsl;
+  box_5_label.innerHTML = box_5.style.backgroundColor + "<br>" + color_5_hex + "<br>" + color_5_hsl;
 }
 
 //  - - - - - - - - - - - - - - - hexToRgb - - - - - - - - - - - - - - -
@@ -261,7 +297,6 @@ function rgbToHsl(rgbColor) {
   // multiply s and l by 100 to get the value in percent, rather than [0,1]
   s *= 100;
   l *= 100;
-  console.log("hsl(%f,%f%,%f%)", h, s, l); // just for testing
 
   return {
     h,
@@ -270,7 +305,87 @@ function rgbToHsl(rgbColor) {
   };
 }
 
+
+function rgbTagToHex(color) {
+  console.log("rgbTagToHex");
+  color = "" + color;
+  if (!color || color.indexOf("rgb") < 0) {
+    return;
+  }
+
+  if (color.charAt(0) == "#") {
+    return color;
+  }
+
+  var nums = /(.*?)rgb\((\d+),\s*(\d+),\s*(\d+)\)/i.exec(color),
+    r = parseInt(nums[2], 10).toString(16),
+    g = parseInt(nums[3], 10).toString(16),
+    b = parseInt(nums[4], 10).toString(16);
+
+  return (
+    "#" +
+    ((r.length == 1 ? "0" + r : r) +
+      (g.length == 1 ? "0" + g : g) +
+      (b.length == 1 ? "0" + b : b))
+  );
+}
+
+// hsl to string
+function hslToString(h, s, l) {
+  const rgbString = `hsl(${h},${s}%,${l}%)`;
+  return hlsString;
+}
+
 function reset() {
   console.log("reset");
   location.reload(true);
+}
+
+function rgbTagToHsl(color) {
+  console.log("rgbTagToHsl");
+
+  color = color.substring(4, color.length - 1)
+    .replace(/ /g, '')
+    .split(',');
+
+  let r = color[0];
+  let g = color[1];
+  let b = color[2];
+
+  r /= 255;
+  g /= 255;
+  b /= 255;
+
+  let h, s, l;
+  const min = Math.min(r, g, b);
+  const max = Math.max(r, g, b);
+  if (max === min) {
+    h = 0;
+  } else if (max === r) {
+    h = 60 * (0 + (g - b) / (max - min));
+  } else if (max === g) {
+    h = 60 * (2 + (b - r) / (max - min));
+  } else if (max === b) {
+    h = 60 * (4 + (r - g) / (max - min));
+  }
+  if (h < 0) {
+    h = h + 360;
+  }
+  l = (min + max) / 2;
+  if (max === 0 || min === 1) {
+    s = 0;
+  } else {
+    s = (max - l) / Math.min(l, 1 - l);
+  }
+  // multiply s and l by 100 to get the value in percent, rather than [0,1]
+  s *= 100;
+  l *= 100;
+
+  h = Math.round(h * 10) / 10;
+  s = Math.round(s * 10) / 10;
+  l = Math.round(l * 10) / 10;
+
+  const hslString = `hsl(${h}, ${s}%, ${l}%)`;
+  return hslString;
+
 }
