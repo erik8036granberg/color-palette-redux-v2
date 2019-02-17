@@ -63,7 +63,6 @@ function selectColor() {
 function selectedColor() {
   console.log("selectedColor");
 
-
   // check for chosen color set & go there - Monochromatic is default
   if (selected === "Monochromatic") {
     monochromaticSet();
