@@ -5,13 +5,6 @@ let selected = "Monochromatic";
 let colorWell;
 let activeColor;
 
-// colorboxes
-const box_1 = document.querySelector("#box_1");
-const box_2 = document.querySelector("#box_2");
-const box_3 = document.querySelector("#box_3");
-const box_4 = document.querySelector("#box_4");
-const box_5 = document.querySelector("#box_5");
-
 document.addEventListener("DOMContentLoaded", init);
 
 function init() {
@@ -203,40 +196,33 @@ function shadeSet() {
 function labels() {
   console.log("labels");
 
-  //  label boxes
-  let box_1_label = document.querySelector("#box_1_label");
-  let box_2_label = document.querySelector("#box_2_label");
-  let box_3_label = document.querySelector("#box_3_label");
-  let box_4_label = document.querySelector("#box_4_label");
-  let box_5_label = document.querySelector("#box_5_label");
-
   // get rgb color from boxes
-  let color_1 = box_1.style.backgroundColor;
-  let color_2 = box_2.style.backgroundColor;
-  let color_3 = box_3.style.backgroundColor;
-  let color_4 = box_4.style.backgroundColor;
-  let color_5 = box_5.style.backgroundColor;
+  let color_1_rgb = box_1.style.backgroundColor;
+  let color_2_rgb = box_2.style.backgroundColor;
+  let color_3_rgb = box_3.style.backgroundColor;
+  let color_4_rgb = box_4.style.backgroundColor;
+  let color_5_rgb = box_5.style.backgroundColor;
 
-  // convet rgb to hex
-  let color_1_hex = rgbTagToHex(color_1);
-  let color_2_hex = rgbTagToHex(color_2);
-  let color_3_hex = rgbTagToHex(color_3);
-  let color_4_hex = rgbTagToHex(color_4);
-  let color_5_hex = rgbTagToHex(color_5);
+  // convert rgb to hex
+  let color_1_hex = rgbTagToHex(color_1_rgb);
+  let color_2_hex = rgbTagToHex(color_2_rgb);
+  let color_3_hex = rgbTagToHex(color_3_rgb);
+  let color_4_hex = rgbTagToHex(color_4_rgb);
+  let color_5_hex = rgbTagToHex(color_5_rgb);
 
-  // convet rgb to hsl
-  let color_1_hsl = rgbTagToHsl(color_1);
-  let color_2_hsl = rgbTagToHsl(color_2);
-  let color_3_hsl = rgbTagToHsl(color_3);
-  let color_4_hsl = rgbTagToHsl(color_4);
-  let color_5_hsl = rgbTagToHsl(color_5);
+  // convert rgb to hsl
+  let color_1_hsl = rgbTagToHsl(color_1_rgb);
+  let color_2_hsl = rgbTagToHsl(color_2_rgb);
+  let color_3_hsl = rgbTagToHsl(color_3_rgb);
+  let color_4_hsl = rgbTagToHsl(color_4_rgb);
+  let color_5_hsl = rgbTagToHsl(color_5_rgb);
 
   // add text to label boxes
-  box_1_label.innerHTML = "<p>" + box_1.style.backgroundColor + "</p><p>" + color_1_hex + "</p><p>" + color_1_hsl + "</p>";
-  box_2_label.innerHTML = "<p>" + box_2.style.backgroundColor + "</p><p>" + color_2_hex + "</p><p>" + color_2_hsl + "</p>";
-  box_3_label.innerHTML = "<p>" + box_3.style.backgroundColor + "</p><p>" + color_3_hex + "</p><p>" + color_3_hsl + "</p>";
-  box_4_label.innerHTML = "<p>" + box_4.style.backgroundColor + "</p><p>" + color_4_hex + "</p><p>" + color_4_hsl + "</p>";
-  box_5_label.innerHTML = "<p>" + box_5.style.backgroundColor + "</p><p>" + color_5_hex + "</p><p>" + color_5_hsl + "</p>";
+  document.querySelector("#box_1_label").innerHTML = "<p>" + color_1_rgb + "</p><p>" + color_1_hex + "</p><p>" + color_1_hsl + "</p>";
+  document.querySelector("#box_2_label").innerHTML = "<p>" + color_2_rgb + "</p><p>" + color_2_hex + "</p><p>" + color_2_hsl + "</p>";
+  document.querySelector("#box_3_label").innerHTML = "<p>" + color_3_rgb + "</p><p>" + color_3_hex + "</p><p>" + color_3_hsl + "</p>";
+  document.querySelector("#box_4_label").innerHTML = "<p>" + color_4_rgb + "</p><p>" + color_4_hex + "</p><p>" + color_4_hsl + "</p>";
+  document.querySelector("#box_5_label").innerHTML = "<p>" + color_5_rgb + "</p><p>" + color_5_hex + "</p><p>" + color_5_hsl + "</p>";
 }
 
 function reset() {
