@@ -34,7 +34,7 @@ function init() {
 }
 
 function colorPick(event) {
-  console.log("colorPick run");
+  console.log("colorPick used");
 
   // get value from colorpicker
   let hexColor = event.target.value;
@@ -42,7 +42,7 @@ function colorPick(event) {
 }
 
 function setBaseColor(hexColor) {
-  console.log("setBaseColor run");
+  console.log("setBaseColor");
 
   // convert color from colorpicker to hsl
   let rgbColor = hexToRgb(hexColor);
@@ -60,7 +60,7 @@ function setBaseColor(hexColor) {
 //  - - - - - - - - - - - - - - - selected colors - - - - - - - - - - - - - - -
 
 function selectColor() {
-  console.log("selectColor run");
+  console.log("selectColor used");
 
   // get values from color set dropdown
   selected = this.options[this.selectedIndex].value;
@@ -68,7 +68,7 @@ function selectColor() {
 }
 
 function selectedColor() {
-  console.log("setColor run");
+  console.log("selectedColor");
 
 
   // check for chosen color set & go there - Monochromatic is default
@@ -95,7 +95,7 @@ function selectedColor() {
 //  - - - - - - - - - - - - - - - Color sets - - - - - - - - - - - - - - -
 
 function monochromaticSet() {
-  console.log("monochromaticSet run");
+  console.log("monochromaticSet");
 
   let hslColor = activeColor;
   box_1.style.backgroundColor = `hsl(${hslColor.h},${hslColor.s}%,${parseInt(
@@ -114,7 +114,7 @@ function monochromaticSet() {
 }
 
 function analogousSet() {
-  console.log("analogousSet run");
+  console.log("analogousSet");
 
   let hslColor = activeColor;
   box_1.style.backgroundColor = `hsl(${parseInt(hslColor.h) - 60},${
@@ -134,7 +134,7 @@ function analogousSet() {
 
 function triadSet() {
   let hslColor = activeColor;
-  console.log("triadSet run");
+  console.log("triadSet");
   box_1.style.backgroundColor = `hsl(${parseInt(hslColor.h) + 120},${
     hslColor.s
   }%,${hslColor.l}%`;
@@ -152,7 +152,7 @@ function triadSet() {
 
 function complementarySet() {
   let hslColor = activeColor;
-  console.log("complementarySet run");
+  console.log("complementarySet");
   box_1.style.backgroundColor = `hsl(${hslColor.h},${hslColor.s}%,${
     hslColor.l
   }%`;
@@ -170,7 +170,7 @@ function complementarySet() {
 
 function compoundSet() {
   let hslColor = activeColor;
-  console.log("compoundSet run");
+  console.log("compoundSet");
   box_1.style.backgroundColor = `hsl(${parseInt(hslColor.h) + 45},${
     hslColor.s
   }%,${hslColor.l}%`;
@@ -188,7 +188,7 @@ function compoundSet() {
 
 function shadeSet() {
   let hslColor = activeColor;
-  console.log("shadeSet run");
+  console.log("shadeSet");
   box_1.style.backgroundColor = `hsl(${hslColor.h},${parseInt(hslColor.s) +
     30}%,${hslColor.l}%`;
   box_2.style.backgroundColor = `hsl(${hslColor.h},${parseInt(hslColor.s) +
@@ -248,7 +248,7 @@ function reset() {
 //  - - - - - - - - - - - - - - - color conversions - - - - - - - - - - - - - - -
 
 function hexToRgb(hexColor) {
-  console.log("hexToRgb");
+  console.log("hexToRgb returned");
 
   // hex tag in - rgb object out
 
@@ -256,12 +256,9 @@ function hexToRgb(hexColor) {
   let subString2 = hexColor.substring(3, 5);
   let subString3 = hexColor.substring(5, 7);
 
-  console.log(subString1, subString2, subString3);
-
   let r = parseInt(subString1, 16);
   let g = parseInt(subString2, 16);
   let b = parseInt(subString3, 16);
-  console.log(r, g, b);
 
   return {
     r,
@@ -271,7 +268,7 @@ function hexToRgb(hexColor) {
 }
 
 function rgbToHsl(rgbColor) {
-  console.log("rgbToHsl run");
+  console.log("rgbToHsl returned");
 
   // rgb object in - hsl object out 
 
@@ -315,7 +312,7 @@ function rgbToHsl(rgbColor) {
 }
 
 function rgbTagToHex(color) {
-  console.log("rgbTagToHex");
+  console.log("rgbTagToHex returned");
 
   // rgb tag in - hex tag out
 
@@ -342,7 +339,7 @@ function rgbTagToHex(color) {
 }
 
 function rgbTagToHsl(color) {
-  console.log("rgbTagToHsl");
+  console.log("rgbTagToHsl returned");
 
   // rgb tag in - hsl tag out
 
