@@ -17,55 +17,39 @@ document.addEventListener("DOMContentLoaded", init);
 function init() {
   console.log("init");
 
+  // eventlistner colorpicker
   document
     .querySelector("#colorWell")
     .addEventListener("input", colorPick, false);
 
-  //   .querySelector("#colorWell")
-  //   .addEventListener("input", colorPick, false);
-
-  // // let colorButton = document
-  // //   .querySelector("#colorWell");
-
-  // // let colorDiv = document
-  // //   .querySelector("#color_val");
-  // // colorButton.onchange = function () {
-  // //   colorDiv.innerHTML = colorButton.value;
-  // //   colorDiv.style.color = colorButton.value;
-  // // }
-
+  // eventlistner color set selecter
   document
     .querySelector("#selectColor")
     .addEventListener("change", selectColor);
-  colorConvert(defaultColor);
 
+  // eventlistner reset button 
   document.querySelector("#reset").addEventListener("click", reset);
 
-  colorConvert(defaultColor);
+  setBaseColor(defaultColor);
 }
 
 function colorPick(event) {
   console.log("colorPick run");
 
+  // get value from colorpicker
   let hexColor = event.target.value;
-  colorConvert(hexColor);
+  setBaseColor(hexColor);
 }
 
-function colorConvert(hexColor) {
-  console.log("colorConvert run");
+function setBaseColor(hexColor) {
+  console.log("setBaseColor run");
 
+  // convert color from colorpicker to hsl
   let rgbColor = hexToRgb(hexColor);
   let hslColor = rgbToHsl(rgbColor);
   activeColor = hslColor;
-  console.log(hslColor);
 
-  setBaseColor();
-}
-
-function setBaseColor() {
-  console.log("setBaseColor run");
-
-  let hslColor = activeColor;
+  // Set color in middle box
   document.querySelector("#box_3").style.backgroundColor = `hsl(${hslColor.h},${
     hslColor.s
   }%,${hslColor.l}%`;
@@ -73,11 +57,12 @@ function setBaseColor() {
   selectedColor();
 }
 
-//  - - - - - - - - - - - - - - - select color dropdown - - - - - - - - - - - - - - -
+//  - - - - - - - - - - - - - - - selected colors - - - - - - - - - - - - - - -
 
 function selectColor() {
   console.log("selectColor run");
 
+  // get values from color set dropdown
   selected = this.options[this.selectedIndex].value;
   selectedColor();
 }
@@ -85,6 +70,8 @@ function selectColor() {
 function selectedColor() {
   console.log("setColor run");
 
+
+  // check for chosen color set & go there - Monochromatic is default
   if (selected === "Monochromatic") {
     monochromaticSet();
   }
@@ -214,13 +201,14 @@ function shadeSet() {
 }
 
 function labels() {
+  console.log("labels");
 
-  // choose label boxes
-  document.querySelector("#box_1_label");
-  document.querySelector("#box_2_label");
-  document.querySelector("#box_3_label");
-  document.querySelector("#box_4_label");
-  document.querySelector("#box_5_label");
+  //  label boxes
+  let box_1_label = document.querySelector("#box_1_label");
+  let box_2_label = document.querySelector("#box_2_label");
+  let box_3_label = document.querySelector("#box_3_label");
+  let box_4_label = document.querySelector("#box_4_label");
+  let box_5_label = document.querySelector("#box_5_label");
 
   // get rgb color from boxes
   let color_1 = box_1.style.backgroundColor;
@@ -228,7 +216,6 @@ function labels() {
   let color_3 = box_3.style.backgroundColor;
   let color_4 = box_4.style.backgroundColor;
   let color_5 = box_5.style.backgroundColor;
-  console.log("color_1 rgb: " + color_1);
 
   // convet rgb to hex
   let color_1_hex = rgbTagToHex(color_1);
@@ -252,10 +239,18 @@ function labels() {
   box_5_label.innerHTML = "<p>" + box_5.style.backgroundColor + "</p><p>" + color_5_hex + "</p><p>" + color_5_hsl + "</p>";
 }
 
-//  - - - - - - - - - - - - - - - hexToRgb - - - - - - - - - - - - - - -
+function reset() {
+  console.log("reset");
+  // reload page
+  location.reload(true);
+}
+
+//  - - - - - - - - - - - - - - - color conversions - - - - - - - - - - - - - - -
 
 function hexToRgb(hexColor) {
   console.log("hexToRgb");
+
+  // hex tag in - rgb object out
 
   let subString1 = hexColor.substring(1, 3);
   let subString2 = hexColor.substring(3, 5);
@@ -275,10 +270,10 @@ function hexToRgb(hexColor) {
   };
 }
 
-//  - - - - - - - - - - - - - - - rgbToHsl - - - - - - - - - - - - - - -
-
 function rgbToHsl(rgbColor) {
   console.log("rgbToHsl run");
+
+  // rgb object in - hsl object out 
 
   let r = rgbColor.r;
   let g = rgbColor.g;
@@ -319,9 +314,11 @@ function rgbToHsl(rgbColor) {
   };
 }
 
-
 function rgbTagToHex(color) {
   console.log("rgbTagToHex");
+
+  // rgb tag in - hex tag out
+
   color = "" + color;
   if (!color || color.indexOf("rgb") < 0) {
     return;
@@ -346,6 +343,8 @@ function rgbTagToHex(color) {
 
 function rgbTagToHsl(color) {
   console.log("rgbTagToHsl");
+
+  // rgb tag in - hsl tag out
 
   color = color.substring(4, color.length - 1)
     .replace(/ /g, '')
@@ -390,9 +389,4 @@ function rgbTagToHsl(color) {
 
   const hslString = `hsl(${h}, ${s}%, ${l}%)`;
   return hslString;
-}
-
-function reset() {
-  console.log("reset");
-  location.reload(true);
 }
